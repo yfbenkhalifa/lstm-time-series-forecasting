@@ -1,0 +1,44 @@
+# Data preprocessing configuration
+data:
+  raw_path: "data/raw"
+  processed_path: "data/processed"
+  test_size: 0.2
+  validation_size: 0.1
+
+# Preprocessing parameters
+preprocessing:
+  sequence_length: 60  # Number of time steps for each sample
+  normalize: true
+  scaler_type: "minmax"  # "minmax" or "standard"
+
+# Model hyperparameters
+model:
+  lstm_units: [64, 32]  # Units for each LSTM layer
+  dropout: 0.2
+  dense_units: 16
+  activation: "relu"
+  output_activation: "linear"
+
+# Training configuration
+training:
+  epochs: 100
+  batch_size: 32
+  learning_rate: 0.001
+  optimizer: "adam"
+  loss: "mse"
+  metrics: ["mse", "mae"]
+  early_stopping_patience: 10
+  validation_split: 0.1
+
+# Model paths
+paths:
+  models_dir: "models"
+  results_dir: "results"
+  checkpoint: "models/best_model.keras"
+  scaler: "models/scaler.pkl"
+
+# Logging
+logging:
+  level: "INFO"
+  log_file: "results/training.log"
+
