@@ -8,4 +8,11 @@ scikit-learn>=1.3.0
 pandas>=2.0.0
 numpy>=1.24.0
 keras>=2.13.0
-
+datasets
+langchain-google-vertexai
+langchain-core
+transformers
+accelerate
+sentencepiece
+langchain_openai
+langchain_community
