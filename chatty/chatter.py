@@ -23,25 +23,23 @@ class Chatter:
             ("human", "{input}")
         ])
         self.chain = self.prompt | llm
-
-
         self.chat = RunnableWithMessageHistory(
             self.chain,
             lambda session: self.history,
             input_messages_key="input",
             history_messages_key="history"
         )
-
-    def init_chat(self, language_and_proficiency: str):
         self.store[self.session_id] = ChatMessageHistory()
         self.history = self.store[self.session_id]
+
+    def init_chat(self, language_and_proficiency: str):
         self.history.add_message(HumanMessage(content=language_and_proficiency))
-        return self.chat.invoke(
-            {"input": language_and_proficiency},
-            config={"configurable":
-                        {"session_id": self.session_id}
-                    }
-        )
+        response =  self.chat.invoke({
+            "input": language_and_proficiency,
+        },
+        config={"configurable": {"session_id": self.session_id}})
+
+        return response
 
 
     def build_messages(self, user_input):
@@ -52,9 +50,6 @@ class Chatter:
         return messages
 
     def invoke(self, user_input: str):
-        if not hasattr(self, "history"):
-            self.init_chat()
-
         response = self.chat.invoke(
             {"input": user_input},
             config={"configurable":
