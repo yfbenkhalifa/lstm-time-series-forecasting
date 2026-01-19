@@ -16,3 +16,4 @@ accelerate
 sentencepiece
 langchain_openai
 langchain_community
+wget

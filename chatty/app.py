@@ -31,8 +31,9 @@ language_teacher_prompt = (
     "- User message\n"
     "Output format:\n"
     "- TL message\n"
-    "- Correction/explanation in the user's language\n"
-    "- Short follow-up question in TL to continue the conversation."
+    "- English translation of the TL message if user is beginner\n"
+    "- Correction/explanation in the user's language only if needed\n"
+    "- Contextualized Follow-up question in TL to continue the conversation."
 )
 
 # Build conversation with context
@@ -43,7 +44,7 @@ initial_chat = [
 
 base_url = "http://10.5.0.2:25000/v1"
 api_key = "not-needed"
-model = "google/gemma-3n-e4b"
+model = "liquid/lfm2.5-1.2b"
 
 llm = ChatOpenAI(
     base_url=base_url,
